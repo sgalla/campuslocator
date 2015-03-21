@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="AlwaysShowAction">
+        <ignore path="res/menu/main_activity_actions.xml" />
+    </issue>
+    <issue id="ContentDescription">
+        <ignore path="res/layout/loading_activity.xml" />
+    </issue>
+    <issue id="HardcodedText">
+        <ignore path="res/layout/help_activity.xml" />
+    </issue>
+    <issue id="RtlHardcoded">
+        <ignore path="res/layout/help_activity.xml" />
+    </issue>
+    <issue id="UnusedAttribute">
+        <ignore path="AndroidManifest.xml" />
+    </issue>
+</lint>
