@@ -3,12 +3,17 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/scrollView1"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content" >
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="600dp"
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".MenuMain" >
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     
     <Button
         android:id="@+id/map"
