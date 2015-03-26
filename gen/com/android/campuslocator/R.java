@@ -2074,23 +2074,30 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_light=0x7f02004c;
         public static final int ic_action_expand=0x7f02004d;
         public static final int ic_action_help=0x7f02004e;
-        public static final int ic_action_search=0x7f02004f;
-        public static final int ic_launcher=0x7f020050;
-        public static final int ic_menu_icon=0x7f020051;
-        public static final int ic_plusone_medium_off_client=0x7f020052;
-        public static final int ic_plusone_small_off_client=0x7f020053;
-        public static final int ic_plusone_standard_off_client=0x7f020054;
-        public static final int ic_plusone_tall_off_client=0x7f020055;
-        public static final int loadtitled=0x7f020056;
-        public static final int loadtitled2=0x7f020057;
-        public static final int longmap=0x7f020058;
-        public static final int menu_about=0x7f020059;
-        public static final int menu_events=0x7f02005a;
-        public static final int menu_map=0x7f02005b;
-        public static final int menu_myunm=0x7f02005c;
-        public static final int menu_schedule=0x7f02005d;
-        public static final int powered_by_google_dark=0x7f02005e;
-        public static final int powered_by_google_light=0x7f02005f;
+        public static final int ic_action_overflow=0x7f02004f;
+        public static final int ic_action_search=0x7f020050;
+        public static final int ic_book_icon=0x7f020051;
+        public static final int ic_building_icon=0x7f020052;
+        public static final int ic_computer_icon=0x7f020053;
+        public static final int ic_dorm_icon=0x7f020054;
+        public static final int ic_food_icon=0x7f020055;
+        public static final int ic_launcher=0x7f020056;
+        public static final int ic_menu_icon=0x7f020057;
+        public static final int ic_parking_icon=0x7f020058;
+        public static final int ic_plusone_medium_off_client=0x7f020059;
+        public static final int ic_plusone_small_off_client=0x7f02005a;
+        public static final int ic_plusone_standard_off_client=0x7f02005b;
+        public static final int ic_plusone_tall_off_client=0x7f02005c;
+        public static final int loadtitled=0x7f02005d;
+        public static final int loadtitled2=0x7f02005e;
+        public static final int longmap=0x7f02005f;
+        public static final int menu_about=0x7f020060;
+        public static final int menu_events=0x7f020061;
+        public static final int menu_map=0x7f020062;
+        public static final int menu_myunm=0x7f020063;
+        public static final int menu_schedule=0x7f020064;
+        public static final int powered_by_google_dark=0x7f020065;
+        public static final int powered_by_google_light=0x7f020066;
     }
     public static final class id {
         public static final int About=0x7f0c005e;
@@ -2167,9 +2174,9 @@ containing a value of this type.
         public static final int progress_circular=0x7f0c0007;
         public static final int progress_horizontal=0x7f0c0008;
         public static final int radio=0x7f0c0040;
-        public static final int radioAlphabetically=0x7f0c0061;
+        public static final int radioAbbr=0x7f0c0062;
         public static final int radioGroup1=0x7f0c0060;
-        public static final int radioNumerically=0x7f0c0062;
+        public static final int radioName=0x7f0c0061;
         public static final int ref1=0x7f0c0058;
         public static final int ref2=0x7f0c0059;
         public static final int ref3=0x7f0c005a;
@@ -2271,6 +2278,7 @@ containing a value of this type.
         public static final int gtm_analytics=0x7f050000;
     }
     public static final class string {
+        public static final int abbr=0x7f07003c;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f070024;
@@ -2328,10 +2336,8 @@ containing a value of this type.
          */
         public static final int abc_toolbar_collapse_description=0x7f070027;
         public static final int accept=0x7f070002;
-        public static final int action_expand=0x7f070045;
         public static final int action_help=0x7f07003a;
         public static final int action_search=0x7f070039;
-        public static final int alphabetical=0x7f07003c;
         public static final int app_name=0x7f070033;
         public static final int buildings=0x7f07003e;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
@@ -2445,7 +2451,7 @@ containing a value of this type.
         public static final int libraries=0x7f070042;
         public static final int menu_main=0x7f070034;
         public static final int menu_settings=0x7f070037;
-        public static final int numerical=0x7f07003b;
+        public static final int name=0x7f07003b;
         public static final int parking=0x7f07003f;
         public static final int sort=0x7f07003d;
         public static final int store_picture_message=0x7f070001;

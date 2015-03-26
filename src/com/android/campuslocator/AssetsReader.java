@@ -12,13 +12,13 @@ public class AssetsReader {
 	public String title;
 	public String latitude;
 	public String longitude;
-	public String buildingNum;
+	public String buildingAbbr;
 
-	public String getBuildingNum() {
-		return buildingNum;
+	public String getBuildingAbbr() {
+		return buildingAbbr;
 	}
-	public void setBuildingNum(String buildingNum) {
-		this.buildingNum = buildingNum;
+	public void setBuildingAbbr(String buildingAbbr) {
+		this.buildingAbbr = buildingAbbr;
 	}
 
 	public String getTitle() {

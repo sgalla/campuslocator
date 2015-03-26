@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.view.View;
@@ -27,18 +28,52 @@ import android.widget.TextView;
 
 public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 	Context ctx;
-	private ArrayList<AssetsReader> buildings = new ArrayList<AssetsReader>();
+	ArrayList<AssetsReader> currentFilter = new ArrayList<AssetsReader>();
+	private HashMap<String, ArrayList<AssetsReader>> assetsMap = new HashMap<String, ArrayList<AssetsReader>>();
+	private boolean sortTitle = true;
+	private String currentSearch;
 
-
+	
 	public TXTAdapter(Context context, int resource) {
 		super(context, resource);
 
 		this.ctx = context;
+
+		ArrayList<String> housing = new ArrayList<String>();
+		housing.add("Lobo Village");
+		housing.add("Coronado Hall Dormitory");
+		housing.add("Hokona Hall (Housing)");
+		housing.add("Casas del Rio");
+		housing.add("Santa Ana Hall Dormitory");
+		housing.add("Santa Clara Hall Dormitory");
+		housing.add("Alvarado Hall Dormitory");
+		housing.add("Redondo Village Student Residences");
+		housing.add("Laguna Hall Dormitory");
+		housing.add("Devargas Hall Dormitory");
 		
+		assetsMap.put("buildings", new ArrayList<AssetsReader>());
+		assetsMap.put("parking", new ArrayList<AssetsReader>());
+		assetsMap.put("computers", new ArrayList<AssetsReader>());
+		assetsMap.put("dining", new ArrayList<AssetsReader>());
+		assetsMap.put("libraries", new ArrayList<AssetsReader>());
+		assetsMap.put("housing", new ArrayList<AssetsReader>());
+			
 		// load the data
-		loadArrayFromFile();
+		loadArrayFromFile("buildings.txt", assetsMap.get("buildings"));
+		loadArrayFromFile("parking.txt", assetsMap.get("parking"));
+		loadArrayFromFile("computers.txt", assetsMap.get("computers"));
+		loadArrayFromFile("dining.txt", assetsMap.get("dining"));
+		loadArrayFromFile("libraries.txt", assetsMap.get("libraries"));
 		
+		for(AssetsReader building : assetsMap.get("buildings"))
+		{
+			if(housing.contains(building.getTitle()))
+				assetsMap.get("housing").add(building);
+		}
 		
+		currentFilter = assetsMap.get("buildings");
+		
+
 	}
 	
 	@Override
@@ -51,20 +86,30 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			mView.setTextSize(16);
 		}
 		
-		mView.setText(getItem(pos).getBuildingNum() + " " + getItem(pos).getTitle());
-		//mView.setText(getItem(pos).getBuildingNum());
-		
+		if(sortTitle)
+		{
+			if (getItem(pos).getBuildingAbbr() == null || getItem(pos).getBuildingAbbr().isEmpty())
+				mView.setText(getItem(pos).getTitle());
+			else
+				mView.setText(getItem(pos).getTitle() + " - " + getItem(pos).getBuildingAbbr());			
+		}
+		else
+		{
+			if(getItem(pos).getBuildingAbbr() != null)
+				mView.setText(getItem(pos).getBuildingAbbr() + " - " + getItem(pos).getTitle());	
+		}
+
 		return mView;
 	}
 	
 	
 	
-	public void loadArrayFromFile() {
+	public void loadArrayFromFile(String file, ArrayList<AssetsReader> assetsList) {
 		
 		
 		try {
 		// get stream and buffer reader for file
-			InputStream IN = ctx.getAssets().open("abqbuildings.txt");
+			InputStream IN = ctx.getAssets().open(file);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(IN));
 			String line;
 		
@@ -72,17 +117,27 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			while ((line = reader.readLine()) != null) {
 			
 			// split to separate the attributes in text file
-				String[] RowData = line.split(",");
-			
-			// create objects for rowdata
+				String[] RowData = line.split("%");
+				
 				AssetsReader current = new AssetsReader();
-				current.setTitle(RowData[0]); // grab the title from file
-				current.setBuildingNum(RowData[1]); // grab the building num
-				current.setLatitude(RowData[2]); // grab lat
-				current.setLongitude(RowData[3]); // grab long
-			
+
+			// create objects for rowdata
+				if(file.equals("buildings.txt"))
+				{
+					current.setTitle(RowData[0]); // grab the title from file
+					current.setBuildingAbbr(RowData[1]); // grab the building abbr
+					current.setLatitude(RowData[2]); // grab lat
+					current.setLongitude(RowData[3]); // grab long
+				}
+				else
+				{
+					current.setTitle(RowData[0]); // grab the title from file
+					current.setLatitude(RowData[1]); // grab lat
+					current.setLongitude(RowData[2]); // grab long
+					current.setBuildingAbbr("");
+				}
 			// add object to array list
-				buildings.add(current);
+				assetsList.add(current);
 				this.add(current);
 			}
 		}
@@ -92,8 +147,10 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		
 	}
 	
-	public void sortAlphabetically() {
-		Collections.sort(buildings, new Comparator<AssetsReader>() {
+	public void sortTitle() {
+		sortTitle = true;
+		
+		Collections.sort(currentFilter, new Comparator<AssetsReader>() {
 
 			@Override
 			public int compare(AssetsReader lhs, AssetsReader rhs) {
@@ -101,35 +158,56 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			}
 			
 		});
-		
-		clear();
-		addAll(buildings);
-		notifyDataSetChanged();
+
+		if (currentSearch != null)
+			search(currentSearch);
+		else
+		{
+			clear();
+			addAll(currentFilter);
+			notifyDataSetChanged();
+		}
 	}
 	
-	public void sortNumerically() {
-		Collections.sort(buildings, new Comparator<AssetsReader>() {
+	public void sortAbbr() {
+		sortTitle = false;
+
+		ArrayList<AssetsReader> tempList = new ArrayList<AssetsReader>();
+		for(AssetsReader building : currentFilter){
+			if (building.getBuildingAbbr() != null && !building.getBuildingAbbr().isEmpty())
+			{
+				tempList.add(building);
+			}
+		}
+		
+		Collections.sort(tempList, new Comparator<AssetsReader>() {
 
 			@Override
 			public int compare(AssetsReader lhs, AssetsReader rhs) {
-				return lhs.getBuildingNum().compareTo(rhs.getBuildingNum());
+				return lhs.getBuildingAbbr().compareTo(rhs.getBuildingAbbr());
 			}
 			
 		});
-		
+
 		clear();
-		addAll(buildings);
+		addAll(tempList);
 		notifyDataSetChanged();
+		
+		if (currentSearch != null)
+			search(currentSearch);
 	}
 	
 	public void search(CharSequence s){
-		
+		currentSearch = s.toString();
 		ArrayList<AssetsReader> tempList = new ArrayList<AssetsReader>();
-		for (AssetsReader building : buildings){
-			String tempTitle = building.getTitle().toLowerCase();
+		for (AssetsReader building : currentFilter){
+			String tempTitle = building.getTitle().toLowerCase() + building.getBuildingAbbr().toLowerCase();
 			s.toString().toLowerCase();
 			if (tempTitle.contains(s))
-				tempList.add(building);
+				if(sortTitle)
+					tempList.add(building);
+				else if(!sortTitle && building.getBuildingAbbr() != null && !building.getBuildingAbbr().isEmpty())
+					tempList.add(building);
 		}
 		
 		clear();
@@ -137,4 +215,19 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 		notifyDataSetChanged();
 	}
 
+	public void setFilter(String s)
+	{
+		currentFilter = assetsMap.get(s);
+		if(currentSearch != null)
+		{
+			search(currentSearch);
+		}
+		else
+		{
+			clear();
+			addAll(currentFilter);
+			notifyDataSetChanged();
+		}
+	}
 }
+

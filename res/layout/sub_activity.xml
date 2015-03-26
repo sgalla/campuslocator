@@ -13,17 +13,17 @@
         android:orientation="horizontal" >
 
         <RadioButton
-            android:id="@+id/radioAlphabetically"
+            android:id="@+id/radioName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@+string/alphabetical" />
+            android:text="@string/name" />
 
         <RadioButton
-            android:id="@+id/radioNumerically"
+            android:id="@+id/radioAbbr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@+string/numerical" />
+            android:text="@string/abbr" />
     </RadioGroup>
 
     <EditText android:id="@+id/inputSearch"

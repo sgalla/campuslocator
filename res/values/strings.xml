@@ -9,8 +9,8 @@
     <string name="destination_list">Destinations</string>
     <string name="action_search">Search</string>
     <string name="action_help"><b>Help Page</b></string>
-    <string name="numerical">List by Number</string>
-    <string name="alphabetical">List by Name</string>
+    <string name="name">List by Name</string>
+    <string name="abbr">List by Abbr</string>
     <string name="sort">Sort</string>
     <string name="buildings">All Buildings</string>
     <string name="parking">Parking</string>

@@ -24,13 +24,13 @@ public class SubActivity extends Activity{
 	private ListView listView;
 	private EditText inputSearch;
 
-	public boolean showPopup(MenuItem item) {
+	/*public boolean showPopup(MenuItem item) {
 	    PopupMenu popup = new PopupMenu(this, findViewById(R.id.dropdown));
 	    MenuInflater inflater = popup.getMenuInflater();
 	    inflater.inflate(R.menu.items, popup.getMenu());
 	    popup.show();
 		return false;
-	}
+	}*/
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -51,9 +51,28 @@ public class SubActivity extends Activity{
 			Intent i = new Intent(this, HelpPage.class);
 			startActivity(i);
 			return true;
+		case R.id.buildings:
+			adapter.setFilter("buildings");
+			break;
+		case R.id.parking:
+			adapter.setFilter("parking");
+			break;
+		case R.id.computer_labs:
+			adapter.setFilter("computers");
+			break;
+		case R.id.food:
+			adapter.setFilter("dining");
+			break;
+		case R.id.libraries:
+			adapter.setFilter("libraries");
+			break;
+		case R.id.dorms:
+			adapter.setFilter("housing");
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+		return true;
 	}
 	
 	@Override
@@ -70,13 +89,13 @@ public class SubActivity extends Activity{
 	    	{
 	    		switch(checkedId)
 	    		{
-	    		case R.id.radioAlphabetically:
+	    		case R.id.radioName:
 	    			if (!adapter.equals(null))
-	    				adapter.sortAlphabetically();
+	    				adapter.sortTitle();
 	    			break;
-	    		case R.id.radioNumerically:
+	    		case R.id.radioAbbr:
 	    			if (!adapter.equals(null))
-	    				adapter.sortNumerically();
+	    				adapter.sortAbbr();
 	    			break;
 	    		}
 	    	}
