@@ -227,6 +227,9 @@ public class TXTAdapter extends ArrayAdapter<AssetsReader> {
 			clear();
 			addAll(currentFilter);
 			notifyDataSetChanged();
+			
+			if (!sortTitle)
+				sortAbbr();
 		}
 	}
 }
