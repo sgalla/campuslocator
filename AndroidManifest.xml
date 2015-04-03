@@ -44,7 +44,7 @@
         <activity
             android:name=".MenuMain"
             android:label="@string/menu_main"
-            android:parentActivityName=".LoadingScreen">
+            >
         </activity>
         
         <activity
@@ -63,6 +63,10 @@
             android:name=".HelpPage"       
             android:label="@string/action_help"
             android:parentActivityName=".SubActivity" >
+        </activity>
+        <activity    
+            android:name=".ErrorLoadingScreen"
+            android:label="@string/error_title" >
         </activity>
 
         <meta-data

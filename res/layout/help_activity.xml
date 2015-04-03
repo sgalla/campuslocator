@@ -4,15 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HelpPage">
-    <TextView
-        android:id="@+id/error"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="297dp" >
+        android:layout_height="297dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -24,7 +21,15 @@
             android:layout_marginRight="10dp"
             android:text="@string/help_body"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </ScrollView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="crash"
+        android:text="Crash me" />
 
     <TextView
         android:id="@+id/textView1"
@@ -43,17 +48,14 @@
         android:text="\t UNM Campus Destinations" />
 
     <Button
-        android:id="@+id/ref2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_action_search"
-        android:text="\t Search Entire Directory" />
-
-    <Button
         android:id="@+id/ref3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_action_help"
         android:text="\t CLSA Help Page" />
+            <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

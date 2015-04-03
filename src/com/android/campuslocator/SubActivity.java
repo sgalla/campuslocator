@@ -28,13 +28,7 @@ public class SubActivity extends Activity{
 	{
 		switch(item.getItemId())
 		{
-		case R.id.search_action:
-			//CODE HERE FOR SEARCH ON CLICK OF SEARCH ICON
-			
-			
-			
-			
-			return true;
+
 		case R.id.help:
 			Intent i = new Intent(this, HelpPage.class);
 			startActivity(i);
@@ -48,6 +42,7 @@ public class SubActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
 	    getActionBar().setDisplayHomeAsUpEnabled(true);
 	    setContentView(R.layout.sub_activity);
 	    

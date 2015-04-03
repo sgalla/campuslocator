@@ -19,5 +19,4 @@ public class HelpPage extends Activity{
 	    Intent i = new Intent(this , SubActivity.class);
 	    startActivity(i);
 	} 
-	
 }

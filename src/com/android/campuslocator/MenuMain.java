@@ -17,6 +17,7 @@ public class MenuMain extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.menu_main_activity);
 		
 		 ActionBar ab = getActionBar(); 

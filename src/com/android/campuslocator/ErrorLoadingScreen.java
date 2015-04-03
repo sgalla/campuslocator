@@ -1,15 +1,15 @@
 package com.android.campuslocator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 import android.view.animation.AnimationUtils;
 
-public class LoadingScreen extends Activity {
+public class ErrorLoadingScreen extends Activity {
     /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 1950;
+    private final int SPLASH_DISPLAY_LENGTH = 5000;
 
     /** Called when the activity is first created. */
     @Override
@@ -17,9 +17,8 @@ public class LoadingScreen extends Activity {
         super.onCreate(icicle);
         Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler(this,
 	            ErrorLoadingScreen.class));
-        setContentView(R.layout.loading_activity);
-        Toast.makeText(this, "Welcome to the CLSA app!", 
-        		Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.error_loading_activity);
+        new AlertDialog.Builder(this).setTitle("ERROR").setMessage("This app has crashed due to an unexpected error. The app will now restart.").setNeutralButton("Close", null).show();
         
         AnimationUtils.loadAnimation(this, R.anim.anim_translate); //load animation method
         
@@ -30,9 +29,9 @@ public class LoadingScreen extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(LoadingScreen.this, MenuMain.class);
-                LoadingScreen.this.startActivity(mainIntent);
-                LoadingScreen.this.finish();
+                Intent mainIntent = new Intent(ErrorLoadingScreen.this, MenuMain.class);
+                ErrorLoadingScreen.this.startActivity(mainIntent);
+                ErrorLoadingScreen.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
     }

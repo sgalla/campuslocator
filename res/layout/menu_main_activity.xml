@@ -10,10 +10,6 @@ android:layout_height="wrap_content" >
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".MenuMain" >
-    <TextView
-        android:id="@+id/error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
     
     <Button
         android:id="@+id/map"
