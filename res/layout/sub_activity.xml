@@ -29,6 +29,8 @@
     <EditText android:id="@+id/inputSearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_building_icon"
+        android:paddingLeft="5dp"
         android:hint="Search locations..."
         android:inputType="textVisiblePassword"/>
     

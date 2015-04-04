@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
 
 import com.android.campuslocator.R;
 
@@ -23,14 +25,6 @@ public class SubActivity extends Activity{
 	private TXTAdapter adapter;
 	private ListView listView;
 	private EditText inputSearch;
-
-	/*public boolean showPopup(MenuItem item) {
-	    PopupMenu popup = new PopupMenu(this, findViewById(R.id.dropdown));
-	    MenuInflater inflater = popup.getMenuInflater();
-	    inflater.inflate(R.menu.items, popup.getMenu());
-	    popup.show();
-		return false;
-	}*/
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -43,6 +37,7 @@ public class SubActivity extends Activity{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) 
 	{
+		TextView textView = (TextView) findViewById(R.id.inputSearch);
 		switch(item.getItemId())
 		{
 		case R.id.dropdown:			
@@ -52,21 +47,27 @@ public class SubActivity extends Activity{
 			startActivity(i);
 			return true;
 		case R.id.buildings:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_building_icon, 0, 0, 0);
 			adapter.setFilter("buildings");
 			break;
 		case R.id.parking:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_parking_icon, 0, 0, 0);
 			adapter.setFilter("parking");
 			break;
 		case R.id.computer_labs:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_computer_icon, 0, 0, 0);
 			adapter.setFilter("computers");
 			break;
 		case R.id.food:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_food_icon, 0, 0, 0);
 			adapter.setFilter("dining");
 			break;
 		case R.id.libraries:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_book_icon, 0, 0, 0);
 			adapter.setFilter("libraries");
 			break;
 		case R.id.dorms:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_dorm_icon, 0, 0, 0);
 			adapter.setFilter("housing");
 			break;
 		default:
@@ -135,10 +136,6 @@ public class SubActivity extends Activity{
 	    adapter = new TXTAdapter(this, -1);
 	    listView.setAdapter(adapter);
 	    
-	    // on item click what do we want to do?? 
-	    /* in theory we want to send the lat and long coordinates to the 
-	     * map methods to display the location on the map.
-	     */
 	    listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

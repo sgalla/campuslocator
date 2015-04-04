@@ -18,6 +18,9 @@
     <string name="food">Dining</string>
     <string name="libraries">Libraries</string>
     <string name="dorms">Housing</string>
+    <string name="no_connection">No Network Connection!</string>
+    <string name="cancel">Cancel</string>
+    <string name="try_again">Try Again</string>
     
     <string name="help_body"><b>\t Welcome to our help page and thank you for using our app.
 	    	We are currently in the development phase of our project and
