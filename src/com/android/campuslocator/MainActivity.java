@@ -17,12 +17,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.campuslocator.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -104,8 +107,8 @@ public class MainActivity extends FragmentActivity{
 		LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 		LatLng ece = new LatLng(35.083180, -106.624656);
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(ece, 18));
-		Marker marker = map.addMarker(new MarkerOptions().position(ece).title("Electrical and Computer Engineering").snippet("EECE")
-				.icon(BitmapDescriptorFactory.fromResource(R.drawable.centennial)).infoWindowAnchor(1f,  1f));
+		map.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+		Marker marker = map.addMarker(new MarkerOptions().position(ece).title("Electrical and Computer Engineering").snippet("EECE"));
 		marker.showInfoWindow();
 		
 		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 1, new LocationListener() {
@@ -186,5 +189,34 @@ public class MainActivity extends FragmentActivity{
 	        // Create the AlertDialog object and return it
 	        return builder.create();
 	    }
+	}
+	
+	public class CustomInfoWindowAdapter implements InfoWindowAdapter
+	{
+	    public CustomInfoWindowAdapter()
+	    {
+	    }
+
+		@Override
+		public View getInfoContents(Marker arg0) {
+			
+			View v  = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+
+	        ImageView markerIcon = (ImageView) v.findViewById(R.id.marker_icon);
+
+	        TextView markerLabel = (TextView)v.findViewById(R.id.marker_label);
+
+	        markerIcon.setImageResource(R.drawable.centennial);
+
+	        markerLabel.setText("Electrical and Computer Engineering");
+
+	        return v;
+		}
+
+		@Override
+		public View getInfoWindow(Marker arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 }
