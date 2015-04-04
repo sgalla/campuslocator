@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 
 import com.android.campuslocator.R;
 
@@ -43,6 +44,7 @@ public class SubActivity extends Activity{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) 
 	{
+		TextView textView = (TextView) findViewById(R.id.inputSearch);
 		switch(item.getItemId())
 		{
 		case R.id.dropdown:			
@@ -52,21 +54,27 @@ public class SubActivity extends Activity{
 			startActivity(i);
 			return true;
 		case R.id.buildings:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_building_icon, 0, 0, 0);
 			adapter.setFilter("buildings");
 			break;
 		case R.id.parking:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_parking_icon, 0, 0, 0);
 			adapter.setFilter("parking");
 			break;
 		case R.id.computer_labs:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_computer_icon, 0, 0, 0);
 			adapter.setFilter("computers");
 			break;
 		case R.id.food:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_food_icon, 0, 0, 0);
 			adapter.setFilter("dining");
 			break;
 		case R.id.libraries:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_book_icon, 0, 0, 0);
 			adapter.setFilter("libraries");
 			break;
 		case R.id.dorms:
+			textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_dorm_icon, 0, 0, 0);
 			adapter.setFilter("housing");
 			break;
 		default:
