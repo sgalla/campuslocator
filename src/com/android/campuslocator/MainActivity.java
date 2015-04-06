@@ -6,11 +6,15 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.*;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -101,11 +105,16 @@ public class MainActivity extends FragmentActivity{
 			map = mapFragment.getMap();
 		    
 		LocationManager locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		
+		//THE FOLLOWING IS TO SHOW A SAMPLE INFO WINDOW. CHANGE FUNCTIONALITY WHEN JOSEPH IMPLEMENTS ROUTING
+		//SHOULD SHOW UP AT SELECTED LOCATION (NOT HARDCODED VALUES)
 		LatLng ece = new LatLng(35.083180, -106.624656);
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(ece, 18));
 		map.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 		Marker marker = map.addMarker(new MarkerOptions().position(ece).title("Electrical and Computer Engineering").snippet("EECE"));
 		marker.showInfoWindow();
+		
+		
 		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 1, new LocationListener() {
 
 			@Override
@@ -198,13 +207,22 @@ public class MainActivity extends FragmentActivity{
 			View v  = getLayoutInflater().inflate(R.layout.custom_info_window, null);
 
 	        ImageView markerIcon = (ImageView) v.findViewById(R.id.marker_icon);
+	        ImageView markerIcon2 = (ImageView) v.findViewById(R.id.marker_icon2);
+	        ImageView markerIcon3 = (ImageView) v.findViewById(R.id.marker_icon3);
 
 	        TextView markerLabel = (TextView)v.findViewById(R.id.marker_label);
 
 	        markerIcon.setImageResource(R.drawable.centennial);
+	        markerIcon2.setImageResource(R.drawable.centennial);
+	        markerIcon3.setImageResource(R.drawable.centennial);
 
-	        markerLabel.setText("Electrical and Computer Engineering");
 
+	        SpannableString string = new SpannableString("Electrical and Computer Engineering");
+	        string.setSpan(new StyleSpan(Typeface.BOLD), 0, string.length(), 0);
+	        markerLabel.append(string);
+	        markerLabel.append("\n\n");
+	        markerLabel.append("EECE");
+	        
 	        return v;
 		}
 
